@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap');
+
+
+@import "tailwindcss";
+
+
+@plugin "daisyui";
+
+
+
+
+*{
+      font-family: "DynaPuff", system-ui;
+}
