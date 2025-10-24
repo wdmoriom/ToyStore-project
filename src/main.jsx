@@ -10,6 +10,13 @@ import About from './component/About';
 import Category from './component/Category';
 import Error from './component/Error';
 import ToyDetails from './Pages/ToyDetails';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import AuthLayout from './Layout/AuthLayout';
+import AuthProvider from './Provider/AuthProvider';
+import Loading from './component/Loading';
+
+
 
 
 
@@ -21,15 +28,37 @@ const router = createBrowserRouter([
       {
         index: true,
         loader : () => fetch('toydata.json'),
-        Component : Home
+        Component : Home,
+        hydrateFallbackElement : <Loading></Loading>
       },
       {
-        path : 'about',
-        Component: About
+        path : 'auth',
+        Component : AuthLayout,
+        children:[
+          {
+        path : '/auth/login',
+        Component: Login
       },
+      {
+         path : '/auth/register',
+         Component : Register
+      },
+        ]
+      },
+   
+   
+      {
+        path : 'about',
+        Component: About,
+     
+      },
+      
      {
         path:'toyDetails/:id',
-        Component : ToyDetails
+        loader : () => fetch('toydata.json'),
+        Component : ToyDetails,
+        hydrateFallbackElement : <Loading></Loading>
+        
      },
       {
         path : 'category',
@@ -45,6 +74,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+          <RouterProvider router={router} />
+    </AuthProvider>
+    
   </StrictMode>,
 )

@@ -1,12 +1,12 @@
 import React from 'react';
-import About from '../component/About';
+
 import { Link } from 'react-router';
 
 const ToyCard = ({singleToy}) => {
-   const{toyName, sellerName, toyid,price,rating,description,pictureURL} = singleToy
+   const{toyName, sellerName, toyId,price,rating,description,pictureURL} = singleToy
     return (
        
-   <Link to={`toydetails/${toyid}`}>
+   <Link to={`toydetails/${toyId}`}>
   
          <div className="card bg-base-100 w-96 shadow-sm ">
   <figure className='p-5'>

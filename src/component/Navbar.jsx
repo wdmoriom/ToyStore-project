@@ -1,10 +1,25 @@
-import React from 'react';
-import { NavLink } from 'react-router';
+import React, { use } from 'react';
+import { Link, NavLink } from 'react-router';
 import logo from '../assets/train.jpg'
 import { BiLogIn } from 'react-icons/bi';
 import { MdAppRegistration } from 'react-icons/md';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Navbar = () => {
+
+
+  const {user, logout} = use(AuthContext)
+
+  const handleLogout = () =>{
+    console.log('user logout')
+        logout()
+        .then(() =>{
+            alert('succesfully loggout')
+        })
+        .catch(error =>{
+         console.log(error)
+        })
+  }
 
     const links = <>
      <li className='text-xl'><NavLink  to='/'>Home</NavLink></li>
@@ -13,7 +28,9 @@ const Navbar = () => {
     
     </>
     return (
+      
        <div className="navbar bg-base-100 shadow-sm w-11/12 mx-auto">
+        <div>{user && user.email}</div>
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -36,9 +53,17 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end gap-5">
+    {
+      user ? ( 
+         <button onClick={handleLogout} className='btn btn-soft btn-info w-30 flex'>Logout</button>
+      ) : ( 
+      <Link to='/auth/login' className="btn btn-soft btn-info w-30 flex"><BiLogIn />Login</Link> 
     
-    <button className="btn btn-soft btn-info w-30 flex"><BiLogIn /><NavLink to='login'>Login</NavLink></button>
-    <button className="btn btn-soft btn-primary w-30"><MdAppRegistration /><NavLink to='/register'>Register</NavLink></button>
+    )}
+    
+    
+  
+    <button className="btn btn-soft btn-primary w-30"><MdAppRegistration />Register</button>
    
   </div>
 </div>

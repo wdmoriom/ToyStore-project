@@ -1,9 +1,17 @@
 import React from 'react';
+import Footer from './Footer';
+
+
+
+
+   
 
 const Category = () => {
     return (
         <div>
-            this is category
+          
+            <Footer></Footer>
+            
         </div>
     );
 };

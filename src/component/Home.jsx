@@ -2,7 +2,12 @@ import React from 'react';
 import Banner from './Banner';
 import Main from './Main';
 import { useLoaderData } from 'react-router';
-import ToyCard from '../Pages/ToyCard';
+
+import Footer from './Footer';
+import ToyDetails from '../Pages/ToyDetails';
+
+
+
 
 const Home = () => {
     const data= useLoaderData()
@@ -12,7 +17,8 @@ const Home = () => {
         <div>
            <Banner></Banner>
            <Main data={data}></Main>
-           
+          
+           <Footer></Footer>
 
            
         </div>
